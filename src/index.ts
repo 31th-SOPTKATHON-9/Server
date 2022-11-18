@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import express, { NextFunction, Request, Response } from "express";
 import router from "./router";
 
