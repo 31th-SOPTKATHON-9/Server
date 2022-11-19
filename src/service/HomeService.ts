@@ -29,6 +29,10 @@ const changeCheck = async (habitId: number) => {
       },
     });
 
+    if (!user) {
+      return null;
+    }
+
     if (user.isCheck === true) {
       const result = await prisma.star_Habit.update({
         where: {
