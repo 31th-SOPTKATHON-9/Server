@@ -151,3 +151,6 @@ ex) feat/3-create-user
 ---------📄HabitService.ts
 ---------📄UserService.ts
 ```
+
+## 아키텍쳐
+![image](https://user-images.githubusercontent.com/59385635/202872659-2ffb9795-7713-4b17-8c9e-c3cabc6fb8ef.png)
