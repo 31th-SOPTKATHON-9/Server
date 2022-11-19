@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 const getHabitByDay = async (filter: string) => {
   try {
-    const data = await prisma.Star_Habit.findMany({
+    const data = await prisma.star_Habit.findMany({
       where: {
         day: filter,
       },
@@ -23,14 +23,14 @@ const getHabitByDay = async (filter: string) => {
 // eslint-disable-next-line consistent-return
 const changeCheck = async (habitId: number) => {
   try {
-    const user = await prisma.Star_Habit.findUnique({
+    const user = await prisma.star_Habit.findUnique({
       where: {
         id: habitId,
       },
     });
 
     if (user.isCheck === true) {
-      const result = await prisma.Star_Habit.update({
+      const result = await prisma.star_Habit.update({
         where: {
           id: user.id,
         },
@@ -45,7 +45,7 @@ const changeCheck = async (habitId: number) => {
       return data;
     }
 
-    const result = await prisma.Star_Habit.update({
+    const result = await prisma.star_Habit.update({
       where: {
         id: user.id,
       },
