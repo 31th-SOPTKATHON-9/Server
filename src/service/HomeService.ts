@@ -8,6 +8,9 @@ const getHabitByDay = async (filter: string) => {
       where: {
         day: filter,
       },
+      orderBy: {
+        id: "asc",
+      },
     });
 
     return data;
@@ -36,12 +39,12 @@ const changeCheck = async (habitId: number) => {
         },
       });
       const data = {
+        id: user.id,
         isCheck: result.isCheck,
       };
       return data;
     }
 
-    console.log("xxx");
     const result = await prisma.Star_Habit.update({
       where: {
         id: user.id,
@@ -51,6 +54,7 @@ const changeCheck = async (habitId: number) => {
       },
     });
     const data = {
+      id: user.id,
       isCheck: result.isCheck,
     };
     return data;
