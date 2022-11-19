@@ -36,10 +36,10 @@ const changeCheck = async (req: Request, res: Response) => {
     const data = await homeService.changeCheck(+habitId);
 
     if (!data) {
-      return res.status(400).json({ status: 400, message: message.HABIT_CHECK_FALSE });
+      return res.status(400).json({ status: 400, message: message.HABIT_CHECK_FAIL });
     }
 
-    return res.status(200).json({ status: 201, message: message.HABIT_CHECK_TRUE, data });
+    return res.status(200).json({ status: 201, message: message.HABIT_CHECK_SUCCESS, data });
   } catch (err) {
     return res.status(500).json({ status: 500, message: message.INTERNAL_SERVER_ERROR });
   }

@@ -8,8 +8,8 @@ const message = {
   READ_HABIT_FAIL: "습관 필터링 실패",
   READ_HABIT_SUCCESS: "습관 필터링 성공",
 
-  HABIT_CHECK_TRUE: "습관 달성 함",
-  HABIT_CHECK_FALSE: "습관 달성 안 함",
+  HABIT_CHECK_SUCCESS: "습관 달성 체크 변경 성공",
+  HABIT_CHECK_FAIL: "습관 달성 체크 변경 실패",
 };
 
 export default message;
