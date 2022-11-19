@@ -8,24 +8,21 @@ datasource db {
 }
 
 model Badge {
-  id     Int     @id @default(autoincrement())
-  starId Int
-  count  Int     @default(0)
-  isLock Boolean @default(true)
+  id         Int        @id @default(autoincrement())
+  starId     Int
+  count      Int        @default(0)
+  isLock     Boolean    @default(true)
+  Star_Habit Star_Habit @relation(fields: [starId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "badge_habit_id_fk")
 }
 
-model Habit {
-  id        Int     @id @default(autoincrement())
-  starId    Int
+model Star_Habit {
+  id        Int     @id(map: "Habit_pkey") @default(autoincrement())
   isCheck   Boolean @default(false)
   desc      String? @db.VarChar(100)
   title     String  @db.VarChar(100)
-  day       String? @db.VarChar(20)
+  day       String? @db.VarChar(10)
   starName  String? @db.VarChar(50)
   starTitle String? @db.VarChar(100)
   introduce String? @db.VarChar(500)
-}
-
-model User {
-  id Int @id @default(autoincrement())
+  Badge     Badge[]
 }
