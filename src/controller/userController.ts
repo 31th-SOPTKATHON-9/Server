@@ -9,7 +9,7 @@ const getUserProgress = async (req: Request, res: Response) => {
     count,
     progress: percent,
   };
-  return res.status(200).json({ status: 200, message: "유저 프로그래스바 조회 성공", result });
+  return res.status(200).json({ status: 200, message: "유저 프로그래스바 조회 성공", data: result });
 };
 
 const userController = {
