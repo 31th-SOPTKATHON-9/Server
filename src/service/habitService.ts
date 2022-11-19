@@ -20,8 +20,13 @@ const searchHabit = async (starName: string) => {
       starName: {
         startsWith: starName,
       },
+      day: "0",
+    },
+    orderBy: {
+      id: "asc",
     },
   });
+
   return data;
 };
 
