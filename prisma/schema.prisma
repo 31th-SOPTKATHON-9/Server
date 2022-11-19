@@ -11,6 +11,7 @@ model Badge {
   id         Int          @id @default(autoincrement())
   count      Int          @default(0)
   isLock     Boolean      @default(true)
+  starId     Int?
   Star_Habit Star_Habit[]
 }
 
