@@ -4,7 +4,7 @@ import { userService } from "../service";
 const getUserProgress = async (req: Request, res: Response) => {
   const data = await userService.getUserProgress();
   const { count } = data;
-  const percent = count / 21;
+  const percent = Math.floor((count / 21) * 100);
   const result = {
     count,
     progress: percent,
