@@ -19,7 +19,7 @@ const searchHabit = async (req: Request, res: Response) => {
 
   if (!starName) return res.status(400).json({ status: 400, message: "검색 결과 없음" });
 
-  const searchedHabit = await habitService.searchHabit(starName);
+  const searchedHabit = await habitService.searchHabit(starName as string);
   return res.status(200).json({ status: 200, message: "검색 성공", searchedHabit });
 };
 
