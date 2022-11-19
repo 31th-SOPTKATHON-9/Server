@@ -1,2 +1,5 @@
-// eslint-disable-next-line import/prefer-default-export
-export { default as habitService } from "./habitService";
+import userService from "./userService";
+import habitService from "./habitService";
+import homeService from "./homeService";
+
+export { userService, habitService, homeService };

@@ -1,2 +1,5 @@
-// eslint-disable-next-line import/prefer-default-export
-export { default as habitController } from "./habitController";
+import userController from "./userController";
+import habitController from "./habitController";
+import homeController from "./homeController";
+
+export { userController, habitController, homeController };
