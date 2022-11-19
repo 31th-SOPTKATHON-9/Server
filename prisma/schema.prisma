@@ -24,6 +24,7 @@ model Habit {
   starId                   Int
   isCheck                  Boolean @default(false)
   desc                     String? @db.VarChar(100)
+  title                    String  @db.VarChar(100)
   Star_Habit_starIdToStar  Star    @relation("Habit_starIdToStar", fields: [starId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "habit_star_id_fk")
   User                     User    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "habit_user_id_fk")
   Star_HabitToStar_habitId Star[]  @relation("HabitToStar_habitId")
@@ -34,6 +35,7 @@ model Star {
   starName                  String  @db.VarChar(50)
   title                     String  @db.VarChar(100)
   habitId                   Int
+  introduce                 String? @db.VarChar(500)
   Habit_HabitToStar_habitId Habit   @relation("HabitToStar_habitId", fields: [habitId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "star_habit_id_fk")
   Badge                     Badge[]
   Habit_Habit_starIdToStar  Habit[] @relation("Habit_starIdToStar")
