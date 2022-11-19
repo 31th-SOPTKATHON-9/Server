@@ -1,0 +1,68 @@
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+const getHabitByDay = async (filter: string) => {
+  try {
+    const data = await prisma.Star_Habit.findMany({
+      where: {
+        day: filter,
+      },
+    });
+
+    return data;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};
+
+// eslint-disable-next-line consistent-return
+const changeCheck = async (habitId: number) => {
+  try {
+    const user = await prisma.Star_Habit.findUnique({
+      where: {
+        id: habitId,
+      },
+    });
+
+    if (user.isCheck === true) {
+      const result = await prisma.Star_Habit.update({
+        where: {
+          id: user.id,
+        },
+        data: {
+          isCheck: false,
+        },
+      });
+      const data = {
+        isCheck: result.isCheck,
+      };
+      return data;
+    }
+
+    console.log("xxx");
+    const result = await prisma.Star_Habit.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        isCheck: true,
+      },
+    });
+    const data = {
+      isCheck: result.isCheck,
+    };
+    return data;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};
+
+const homeService = {
+  getHabitByDay,
+  changeCheck,
+};
+
+export default homeService;
