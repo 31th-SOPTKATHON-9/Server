@@ -6,3 +6,41 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Badge {
+  id     Int     @id @default(autoincrement())
+  userId Int
+  starId Int
+  count  Int     @default(0)
+  isLock Boolean @default(true)
+  day    String  @db.VarChar(20)
+  Star   Star    @relation(fields: [starId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "badge_star_id_fk")
+  User   User    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "badge_user_id_fk")
+}
+
+model Habit {
+  id                       Int     @id @default(autoincrement())
+  userId                   Int
+  starId                   Int
+  isCheck                  Boolean @default(false)
+  desc                     String? @db.VarChar(100)
+  Star_Habit_starIdToStar  Star    @relation("Habit_starIdToStar", fields: [starId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "habit_star_id_fk")
+  User                     User    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "habit_user_id_fk")
+  Star_HabitToStar_habitId Star[]  @relation("HabitToStar_habitId")
+}
+
+model Star {
+  id                        Int     @id @default(autoincrement())
+  starName                  String  @db.VarChar(50)
+  title                     String  @db.VarChar(100)
+  habitId                   Int
+  Habit_HabitToStar_habitId Habit   @relation("HabitToStar_habitId", fields: [habitId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "star_habit_id_fk")
+  Badge                     Badge[]
+  Habit_Habit_starIdToStar  Habit[] @relation("Habit_starIdToStar")
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  Badge Badge[]
+  Habit Habit[]
+}
